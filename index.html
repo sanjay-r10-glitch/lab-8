@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Information Capture | Web Programming Lab 8</title>
+  <meta name="description" content="Capture user information such as name, gender, mobile number, email, city, state, and country using interactive HTML5 form elements and client-side JavaScript.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Ambient Lights -->
+  <div class="bg-ambient-orb orb-1"></div>
+  <div class="bg-ambient-orb orb-2"></div>
+
+  <main class="container container-narrow">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="badge-tag">
+        <span class="badge-pulse"></span>
+        Lab 8 • Form Capture System
+      </div>
+      <h1 class="app-title">User <span class="text-gradient">Information</span> Portal</h1>
+      <p class="app-subtitle">
+        Enter your credentials and contact information below. Submitted data will be processed and dynamically rendered on the profile showcase page.
+      </p>
+    </header>
+
+    <!-- Main Form Card -->
+    <section class="glass-card">
+      
+      <!-- Progress Bar -->
+      <div class="form-progress-wrap">
+        <div class="progress-header">
+          <span>Form Completion Status</span>
+          <span id="progressPercent" class="progress-count">0%</span>
+        </div>
+        <div class="progress-bar-track">
+          <div id="progressBar" class="progress-bar-fill"></div>
+        </div>
+      </div>
+
+      <form id="userForm" novalidate>
+        
+        <!-- Section 1: Personal Details -->
+        <div class="form-section">
+          <div class="section-legend">
+            <span class="section-icon">👤</span>
+            Personal Details
+          </div>
+
+          <div class="form-grid">
+            <!-- Full Name -->
+            <div class="form-group form-grid-full" id="group-fullName">
+              <label for="fullName" class="form-label">
+                <span>Full Name <span class="label-required">*</span></span>
+                <span class="text-dim" style="font-size:0.75rem;">Letters & spaces only</span>
+              </label>
+              <div class="input-wrapper">
+                <span class="input-icon-left">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </span>
+                <input 
+                  type="text" 
+                  id="fullName" 
+                  name="fullName" 
+                  class="form-control" 
+                  placeholder="e.g. Alex Johnson"
+                  required
+                  autocomplete="name"
+                >
+                <span class="input-status-icon status-valid">✓</span>
+                <span class="input-status-icon status-error">✕</span>
+              </div>
+              <span class="error-message" id="error-fullName">Please enter a valid full name (minimum 3 characters).</span>
+            </div>
+
+            <!-- Gender Selection -->
+            <div class="form-group form-grid-full" id="group-gender">
+              <label class="form-label">
+                <span>Gender <span class="label-required">*</span></span>
+              </label>
+              <div class="gender-options-grid">
+                <label class="gender-option">
+                  <input type="radio" name="gender" value="Male" required>
+                  <div class="gender-card">
+                    <span class="gender-icon">♂</span>
+                    <span class="gender-title">Male</span>
+                  </div>
+                </label>
+                <label class="gender-option">
+                  <input type="radio" name="gender" value="Female">
+                  <div class="gender-card">
+                    <span class="gender-icon">♀</span>
+                    <span class="gender-title">Female</span>
+                  </div>
+                </label>
+                <label class="gender-option">
+                  <input type="radio" name="gender" value="Other">
+                  <div class="gender-card">
+                    <span class="gender-icon">⚧</span>
+                    <span class="gender-title">Other</span>
+                  </div>
+                </label>
+              </div>
+              <span class="error-message" id="error-gender">Please select your gender.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Contact Information -->
+        <div class="form-section">
+          <div class="section-legend">
+            <span class="section-icon">📞</span>
+            Contact Information
+          </div>
+
+          <div class="form-grid">
+            <!-- Mobile Number -->
+            <div class="form-group" id="group-mobile">
+              <label for="mobile" class="form-label">
+                <span>Mobile Number <span class="label-required">*</span></span>
+              </label>
+              <div class="phone-input-group">
+                <select id="countryCode" name="countryCode" class="form-control country-code-select" aria-label="Country Code">
+                  <option value="+91">🇮🇳 +91</option>
+                  <option value="+1">🇺🇸 +1</option>
+                  <option value="+44">🇬🇧 +44</option>
+                  <option value="+61">🇦🇺 +61</option>
+                  <option value="+81">🇯🇵 +81</option>
+                  <option value="+49">🇩🇪 +49</option>
+                  <option value="+971">🇦🇪 +971</option>
+                  <option value="+65">🇸🇬 +65</option>
+                </select>
+                <div class="input-wrapper" style="flex:1;">
+                  <span class="input-icon-left">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                  </span>
+                  <input 
+                    type="tel" 
+                    id="mobile" 
+                    name="mobile" 
+                    class="form-control" 
+                    placeholder="98765 43210"
+                    required
+                    autocomplete="tel-national"
+                    maxlength="15"
+                  >
+                  <span class="input-status-icon status-valid">✓</span>
+                  <span class="input-status-icon status-error">✕</span>
+                </div>
+              </div>
+              <span class="error-message" id="error-mobile">Please enter a valid 10-digit mobile number.</span>
+            </div>
+
+            <!-- Email ID -->
+            <div class="form-group" id="group-email">
+              <label for="email" class="form-label">
+                <span>Mail ID <span class="label-required">*</span></span>
+              </label>
+              <div class="input-wrapper">
+                <span class="input-icon-left">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </span>
+                <input 
+                  type="email" 
+                  id="email" 
+                  name="email" 
+                  class="form-control" 
+                  placeholder="alex.johnson@example.com"
+                  required
+                  autocomplete="email"
+                >
+                <span class="input-status-icon status-valid">✓</span>
+                <span class="input-status-icon status-error">✕</span>
+              </div>
+              <span class="error-message" id="error-email">Please enter a valid email address (e.g. name@domain.com).</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: Location Details -->
+        <div class="form-section">
+          <div class="section-legend">
+            <span class="section-icon">📍</span>
+            Location Details
+          </div>
+
+          <div class="form-grid form-grid-3">
+            <!-- Country -->
+            <div class="form-group" id="group-country">
+              <label for="country" class="form-label">
+                <span>Country <span class="label-required">*</span></span>
+              </label>
+              <div class="input-wrapper">
+                <span class="input-icon-left">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </span>
+                <select id="country" name="country" class="form-control" required autocomplete="country-name">
+                  <option value="" disabled selected>Select Country</option>
+                  <option value="India">India</option>
+                  <option value="United States">United States</option>
+                  <option value="United Kingdom">United Kingdom</option>
+                  <option value="Canada">Canada</option>
+                  <option value="Australia">Australia</option>
+                  <option value="Germany">Germany</option>
+                  <option value="France">France</option>
+                  <option value="Singapore">Singapore</option>
+                  <option value="United Arab Emirates">United Arab Emirates</option>
+                  <option value="Japan">Japan</option>
+                  <option value="Other">Other</option>
+                </select>
+                <span class="input-status-icon status-valid">✓</span>
+                <span class="input-status-icon status-error">✕</span>
+              </div>
+              <span class="error-message" id="error-country">Please select your country.</span>
+            </div>
+
+            <!-- State -->
+            <div class="form-group" id="group-state">
+              <label for="state" class="form-label">
+                <span>State <span class="label-required">*</span></span>
+              </label>
+              <div class="input-wrapper">
+                <span class="input-icon-left">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
+                </span>
+                <select id="state" name="state" class="form-control" required autocomplete="address-level1">
+                  <option value="" disabled selected>Select State</option>
+                  <option value="Karnataka">Karnataka</option>
+                  <option value="Maharashtra">Maharashtra</option>
+                  <option value="Delhi">Delhi</option>
+                  <option value="Tamil Nadu">Tamil Nadu</option>
+                  <option value="Telangana">Telangana</option>
+                  <option value="Gujarat">Gujarat</option>
+                  <option value="Uttar Pradesh">Uttar Pradesh</option>
+                  <option value="West Bengal">West Bengal</option>
+                  <option value="Kerala">Kerala</option>
+                  <option value="Rajasthan">Rajasthan</option>
+                  <option value="California">California</option>
+                  <option value="New York">New York</option>
+                  <option value="Texas">Texas</option>
+                  <option value="England">England</option>
+                  <option value="Ontario">Ontario</option>
+                  <option value="New South Wales">New South Wales</option>
+                  <option value="Dubai">Dubai</option>
+                  <option value="Other">Other (Custom State)</option>
+                </select>
+                <span class="input-status-icon status-valid">✓</span>
+                <span class="input-status-icon status-error">✕</span>
+              </div>
+              <input type="text" id="customState" class="form-control" placeholder="Type custom state name..." style="display: none; margin-top: 0.5rem;" autocomplete="address-level1">
+              <span class="error-message" id="error-state">Please select or specify your state.</span>
+            </div>
+
+            <!-- City -->
+            <div class="form-group" id="group-city">
+              <label for="city" class="form-label">
+                <span>City <span class="label-required">*</span></span>
+              </label>
+              <div class="input-wrapper">
+                <span class="input-icon-left">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18"></path><path d="M5 21V7l8-4v18"></path><path d="M19 21V11l-6-4"></path><path d="M9 9v.01"></path><path d="M9 12v.01"></path><path d="M9 15v.01"></path><path d="M9 18v.01"></path></svg>
+                </span>
+                <select id="city" name="city" class="form-control" required autocomplete="address-level2">
+                  <option value="" disabled selected>Select City</option>
+                  <option value="Bengaluru">Bengaluru</option>
+                  <option value="Mumbai">Mumbai</option>
+                  <option value="New Delhi">New Delhi</option>
+                  <option value="Chennai">Chennai</option>
+                  <option value="Hyderabad">Hyderabad</option>
+                  <option value="Pune">Pune</option>
+                  <option value="Kolkata">Kolkata</option>
+                  <option value="Ahmedabad">Ahmedabad</option>
+                  <option value="Jaipur">Jaipur</option>
+                  <option value="Lucknow">Lucknow</option>
+                  <option value="Los Angeles">Los Angeles</option>
+                  <option value="San Francisco">San Francisco</option>
+                  <option value="New York City">New York City</option>
+                  <option value="London">London</option>
+                  <option value="Toronto">Toronto</option>
+                  <option value="Sydney">Sydney</option>
+                  <option value="Dubai City">Dubai City</option>
+                  <option value="Other">Other (Custom City)</option>
+                </select>
+                <span class="input-status-icon status-valid">✓</span>
+                <span class="input-status-icon status-error">✕</span>
+              </div>
+              <input type="text" id="customCity" class="form-control" placeholder="Type custom city name..." style="display: none; margin-top: 0.5rem;" autocomplete="address-level2">
+              <span class="error-message" id="error-city">Please select or specify your city.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form Action Buttons -->
+        <div class="form-actions">
+          <button type="button" id="btnDemo" class="btn btn-secondary" title="Auto-fill sample data">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            Fill Demo
+          </button>
+          
+          <button type="reset" id="btnReset" class="btn btn-secondary">
+            Reset
+          </button>
+
+          <button type="submit" id="btnSubmit" class="btn btn-primary">
+            <span>Submit & View Profile</span>
+            <svg class="btn-icon-right" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </button>
+        </div>
+
+      </form>
+    </section>
+
+    <!-- Footer info / shortcut to display -->
+    <div style="text-align: center; margin-top: 1.75rem; color: var(--text-dim); font-size: 0.85rem;">
+      Already submitted a profile? 
+      <a href="display.html" style="color: #818cf8; text-decoration: none; font-weight: 600; margin-left: 4px;">
+        View Display Page →
+      </a>
+    </div>
+  </main>
+
+  <!-- Toast Container -->
+  <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
